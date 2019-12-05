@@ -4,6 +4,7 @@ ARG GIT_REF
 ARG GIT_REPO
 WORKDIR /assets/build/
 RUN apt-get update && apt-get install -y git 
+RUN apt-get install -y libpq-dev
 RUN \
   gem install --no-ri --no-doc bundler && \
   printf "source 'https://rubygems.org'\n\ngem \"%s\", :git => \"%s\" , :ref => \"%s\"\n" ${ASSET_GEM} ${GIT_REPO} ${GIT_REF}| tee Gemfile 
