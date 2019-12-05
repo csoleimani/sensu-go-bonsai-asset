@@ -4,7 +4,8 @@ ARG GIT_REF
 ARG GIT_REPO
 WORKDIR /assets/build/
 RUN yum install -y git 
-RUN yum install -y libpqxx-devel 
+RUN yum list libpq
+# RUN yum install -y libpqxx-devel 
 RUN \
   gem install --no-ri --no-doc bundler && \
   printf "source 'https://rubygems.org'\n\ngem \"%s\", :git => \"%s\" , :ref => \"%s\"\n" ${ASSET_GEM} ${GIT_REPO} ${GIT_REF}| tee Gemfile 
